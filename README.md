@@ -41,7 +41,7 @@ project-root/
 
 ## 🖼️ Screenshots
 ➕ Add Task Page
-![Add Task Page](assets/createTask.png)
+![Add Task Page](./public/assets/createTask.png)
 
 ### 📌 Add Task Page
-![Task List Page](assets/allTask.png)
+![Task List Page](./public/assets/allTask.png) 
