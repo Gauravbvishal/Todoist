@@ -1,0 +1,191 @@
+doctype html
+html
+  head
+    title ToDo App
+    style.
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      header {
+        background: rgba(0, 0, 0, 0.25);
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+      }
+
+      header .logo {
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      header nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      header nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      header nav ul li a:hover {
+        color: #ffd369;
+      }
+
+      .todo-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .todo-form {
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        width: 400px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      .todo-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #444;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border 0.3s, box-shadow 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+        outline: none;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.3s;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(135deg, #5a6fdc, #6a429a);
+      }
+
+      footer {
+        text-align: center;
+        padding: 15px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.2);
+        font-size: 14px;
+      }
+
+      footer a {
+        color: #ffd369;
+        text-decoration: none;
+        margin: 0 8px;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+  body
+    header
+      div.logo ToDo App 📝
+      nav
+        ul
+          li: a(href="/") Create Task
+          li: a(href="/alltask") Show Task
+          li: a(href="/logout") Logout
+
+    main.todo-container
+      section.todo-form
+        h2 Add a New Task
+        form(action="/add-todo" method="POST")
+          // Task input
+          div.form-group
+            label(for="task") Task
+            input#task(type="text" name="task" placeholder="Enter your task" required)
+
+          // Deadline input
+          div.form-group
+            label(for="deadline") Deadline
+            input#deadline(type="date" name="deadline")
+
+          // Priority dropdown
+          div.form-group
+            label(for="priority") Priority
+            select#priority(name="priority" required)
+              option(value="" disabled selected) -- Select Priority --
+              option(value="high") High
+              option(value="medium") Medium
+              option(value="low") Low
+
+          // Submit button
+          button(type="submit") ➕ Add Task
+    footer
+      p © 2025 ToDo App. All rights reserved.
+      nav
+        Privacy-Policy
+        |  • 
+        Terms
+        |  • 
+        Contact
