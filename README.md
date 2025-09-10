@@ -25,6 +25,12 @@ This project demonstrates CRUD operations (Create, Read, Update, Delete) with a 
 - **Other:** dotenv, body-parser
 
 ---
+## 🖼️ Screenshots
+➕ Add Task Page
+![Add Task Page](./public/assets/createTask.png)
+
+### 📌 Add Task Page
+![Task List Page](./public/assets/allTask.png) 
 
 ## 📂 Project Structure
 
@@ -57,10 +63,3 @@ project-root/
 │── .gitignore           # Ignored files/folders
 │── app.js               # Main Express app entry
 │── package.json         # Dependencies & scripts
-
-## 🖼️ Screenshots
-➕ Add Task Page
-![Add Task Page](./public/assets/createTask.png)
-
-### 📌 Add Task Page
-![Task List Page](./public/assets/allTask.png) 
