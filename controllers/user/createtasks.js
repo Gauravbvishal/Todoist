@@ -12,9 +12,21 @@ exports.sendtask= async (req, res) => {
 }
 
 exports.showtask=(req,res)=>{
-  Todo.findAll()
+  let high=0,medium=0,low=0;
+  Todo.findAll({ raw: true })
   .then(tasks=>{
-    return res.render('user/showtasks',{tasks})
+    for(let data of tasks){
+      if(data.priority=="high"){
+        high++;
+      }
+      else if(data.priority=="medium"){
+        medium++;
+      }
+      else{
+        low++;
+      }
+    }
+    return res.render('user/showtasks',{tasks,high:high,medium:medium,low:low})
   })
   .catch(err=>console.log(err))
 }

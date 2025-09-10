@@ -19,7 +19,7 @@ html
 
       header {
         background: rgba(0, 0, 0, 0.25);
-        padding: 15px 20px;
+        padding: 15px 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -56,6 +56,23 @@ html
         letter-spacing: 1px;
       }
 
+      .summary {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+
+      .summary div {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px 25px;
+        border-radius: 12px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+
       main.task-container {
         flex: 1;
         padding: 30px;
@@ -65,7 +82,6 @@ html
       }
 
       .task-card {
-        background: #fff;
         padding: 20px;
         border-radius: 14px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -81,29 +97,29 @@ html
         box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
       }
 
+      .priority-high {
+        background: #ff4d4d;
+        color: white;
+      }
+
+      .priority-medium {
+        background: #f9a825;
+        color: white;
+      }
+
+      .priority-low {
+        background: #4caf50;
+        color: white;
+      }
+
       .task-card h2 {
         margin-bottom: 10px;
         font-size: 18px;
-        color: #007bff;
       }
 
       .task-card p {
         margin: 5px 0;
         font-size: 14px;
-        color: #333;
-      }
-
-      .task-status {
-        margin: 8px 0;
-        font-size: 14px;
-      }
-
-      .task-status select {
-        padding: 6px 10px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-        outline: none;
       }
 
       .task-actions {
@@ -132,12 +148,12 @@ html
       }
 
       .btn-delete {
-        background: #ff4d4d;
+        background: #d32f2f;
         color: white;
       }
 
       .btn-delete:hover {
-        background: #e63e3e;
+        background: #b71c1c;
         transform: translateY(-2px);
       }
 
@@ -157,25 +173,9 @@ html
         font-size: 14px;
       }
 
-      footer a {
-        color: #ffd369;
-        text-decoration: none;
-        margin: 0 8px;
-      }
-
-      footer a:hover {
-        text-decoration: underline;
-      }
-
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
   body
     header
@@ -188,11 +188,17 @@ html
 
     h1.page-title All Tasks
 
+    // ✅ Summary section
+    .summary
+      div High Priority Tasks: #{high}
+      div Medium Priority Tasks: #{medium}
+      div Low Priority Tasks: #{low}
+
     if tasks.length
       main.task-container
         each task in tasks
-          .task-card
-            h2 Task ##{task.id}
+          .task-card(class=`priority-${task.priority}`)
+            h2 Task #{task.id}
             p 
               strong Name: 
               | #{task.task}
@@ -201,28 +207,13 @@ html
               | #{task.priority}
             p 
               strong Deadline: 
-              | #{task.deadline}
-
-            // 👇 Added Status dropdown here
-            .task-status
-              strong Status: 
-              select(name="status")
-                option(value="Started" selected=task.status==='Started') Started
-                option(value="In Progress" selected=task.status==='In Progress') In Progress
-                option(value="Completed" selected=task.status==='Completed') Completed
+              | #{task.deadline.toDateString ? task.deadline.toDateString() : task.deadline}
 
             .task-actions
               a.btn.btn-edit(href=`/edit/${task.id}`) ✏️ Edit
               a.btn.btn-delete(href=`/delete/${task.id}`) 🗑️ Delete
-              
     else
       p.no-task No tasks found. Add your first task ✅
 
     footer
       p © 2025 ToDo App. All rights reserved.
-      nav
-        a(href="/privacy") Privacy Policy
-        |  • 
-        a(href="/terms") Terms
-        |  • 
-        a(href="/contact") Contact
