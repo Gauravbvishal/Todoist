@@ -28,16 +28,37 @@ This project demonstrates CRUD operations (Create, Read, Update, Delete) with a 
 
 ## 📂 Project Structure
 
+## 📂 Project Structure
+
+```plaintext
 project-root/
-│── model/ # Sequelize models (e.g., Todo.js)
-│── controllers/ # Route handlers (business logic)
-│── routes/ # Express routes
-│── views/ # Pug templates (index, showtasks, layouts)
-│── public/ # Static files (CSS, JS)
-│── .env # Environment variables (ignored by Git)
-│── .gitignore # Ignored files/folders
-│── app.js # Main Express app entry
-│── package.json # Dependencies & scripts
+│── config/              # Database configuration (Sequelize setup)
+│   └── database.js
+│
+│── models/              # Sequelize models
+│   └── Todo.js
+│
+│── controllers/         # Route handlers (business logic)
+│   └── todoController.js
+│
+│── routes/              # Express routes
+│   └── todoRoutes.js
+│
+│── views/               # Pug templates
+│   ├── layouts/         # Common layouts (header, footer, base)
+│   │   └── layout.pug
+│   ├── createTask.pug   # Add Task page
+│   └── allTask.pug      # Task listing page
+│
+│── public/              # Static files
+│   ├── css/             # Stylesheets
+│   ├── js/              # Client-side scripts
+│   └── assets/          # Images (screenshots, logos, etc.)
+│
+│── .env                 # Environment variables
+│── .gitignore           # Ignored files/folders
+│── app.js               # Main Express app entry
+│── package.json         # Dependencies & scripts
 
 ## 🖼️ Screenshots
 ➕ Add Task Page

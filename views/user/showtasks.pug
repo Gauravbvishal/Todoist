@@ -93,6 +93,19 @@ html
         color: #333;
       }
 
+      .task-status {
+        margin: 8px 0;
+        font-size: 14px;
+      }
+
+      .task-status select {
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        outline: none;
+      }
+
       .task-actions {
         margin-top: 15px;
         display: flex;
@@ -189,9 +202,19 @@ html
             p 
               strong Deadline: 
               | #{task.deadline}
+
+            // 👇 Added Status dropdown here
+            .task-status
+              strong Status: 
+              select(name="status")
+                option(value="Started" selected=task.status==='Started') Started
+                option(value="In Progress" selected=task.status==='In Progress') In Progress
+                option(value="Completed" selected=task.status==='Completed') Completed
+
             .task-actions
               a.btn.btn-edit(href=`/edit/${task.id}`) ✏️ Edit
               a.btn.btn-delete(href=`/delete/${task.id}`) 🗑️ Delete
+              
     else
       p.no-task No tasks found. Add your first task ✅
 
