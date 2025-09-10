@@ -28,8 +28,6 @@ This project demonstrates CRUD operations (Create, Read, Update, Delete) with a 
 
 ## 📂 Project Structure
 
-## 📂 Project Structure
-
 ```plaintext
 project-root/
 │── config/              # Database configuration (Sequelize setup)
