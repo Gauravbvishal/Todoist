@@ -73,28 +73,33 @@ html
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       }
 
-      main.task-container {
+      main.task-board {
         flex: 1;
         padding: 30px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 25px;
       }
 
-      .task-card {
+      .column {
+        background: rgba(255,255,255,0.1);
+        border-radius: 12px;
         padding: 20px;
-        border-radius: 14px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        transition: transform 0.2s, box-shadow 0.3s;
-        animation: fadeIn 0.6s ease-in-out;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       }
 
-      .task-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+      .column h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: #fff;
+      }
+
+      .task-card {
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        animation: fadeIn 0.6s ease-in-out;
       }
 
       .priority-high {
@@ -112,29 +117,28 @@ html
         color: white;
       }
 
-      .task-card h2 {
-        margin-bottom: 10px;
-        font-size: 18px;
+      .task-card h3 {
+        margin-bottom: 8px;
+        font-size: 16px;
       }
 
       .task-card p {
-        margin: 5px 0;
+        margin: 3px 0;
         font-size: 14px;
       }
 
       .task-actions {
-        margin-top: 15px;
+        margin-top: 10px;
         display: flex;
         justify-content: space-between;
       }
 
       .btn {
         text-decoration: none;
-        padding: 8px 14px;
+        padding: 6px 12px;
         border-radius: 6px;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
-        transition: background 0.3s, transform 0.2s;
       }
 
       .btn-edit {
@@ -142,27 +146,15 @@ html
         color: white;
       }
 
-      .btn-edit:hover {
-        background: #5a6fdc;
-        transform: translateY(-2px);
-      }
-
       .btn-delete {
         background: #d32f2f;
         color: white;
       }
 
-      .btn-delete:hover {
-        background: #b71c1c;
-        transform: translateY(-2px);
-      }
-
       .no-task {
         text-align: center;
-        margin: 40px 0;
-        color: white;
-        font-size: 18px;
-        font-weight: 500;
+        margin-top: 20px;
+        color: #ddd;
       }
 
       footer {
@@ -188,32 +180,56 @@ html
 
     h1.page-title All Tasks
 
-    // ✅ Summary section
     .summary
-      div High Priority Tasks: #{high}
-      div Medium Priority Tasks: #{medium}
-      div Low Priority Tasks: #{low}
+      div High Priority: #{high}
+      div Medium Priority: #{medium}
+      div Low Priority: #{low}
 
-    if tasks.length
-      main.task-container
-        each task in tasks
-          .task-card(class=`priority-${task.priority}`)
-            h2 Task #{task.id}
-            p 
-              strong Name: 
-              | #{task.task}
-            p 
-              strong Priority: 
-              | #{task.priority}
-            p 
-              strong Deadline: 
-              | #{task.deadline.toDateString ? task.deadline.toDateString() : task.deadline}
+    main.task-board
+      // High Priority Column
+      .column
+        h2 🔴 High Priority
+        - var highTasks = tasks.filter(t => t.priority === "high");
+        if highTasks.length
+          each task in highTasks
+            .task-card.priority-high
+              h3= task.task
+              p Deadline: #{task.deadline.toDateString ? task.deadline.toDateString() : task.deadline}
+              .task-actions
+                a.btn.btn-edit(href=`/edit/${task.id}`) ✏️ Edit
+                a.btn.btn-delete(href=`/delete/${task.id}`) 🗑️ Delete
+        else
+          p.no-task No High Priority Tasks
 
-            .task-actions
-              a.btn.btn-edit(href=`/edit/${task.id}`) ✏️ Edit
-              a.btn.btn-delete(href=`/delete/${task.id}`) 🗑️ Delete
-    else
-      p.no-task No tasks found. Add your first task ✅
+      // Medium Priority Column
+      .column
+        h2 🟠 Medium Priority
+        - var mediumTasks = tasks.filter(t => t.priority === "medium");
+        if mediumTasks.length
+          each task in mediumTasks
+            .task-card.priority-medium
+              h3= task.task
+              p Deadline: #{task.deadline.toDateString ? task.deadline.toDateString() : task.deadline}
+              .task-actions
+                a.btn.btn-edit(href=`/edit/${task.id}`) ✏️ Edit
+                a.btn.btn-delete(href=`/delete/${task.id}`) 🗑️ Delete
+        else
+          p.no-task No Medium Priority Tasks
+
+      // Low Priority Column
+      .column
+        h2 🟢 Low Priority
+        - var lowTasks = tasks.filter(t => t.priority === "low");
+        if lowTasks.length
+          each task in lowTasks
+            .task-card.priority-low
+              h3= task.task
+              p Deadline: #{task.deadline.toDateString ? task.deadline.toDateString() : task.deadline}
+              .task-actions
+                a.btn.btn-edit(href=`/edit/${task.id}`) ✏️ Edit
+                a.btn.btn-delete(href=`/delete/${task.id}`) 🗑️ Delete
+        else
+          p.no-task No Low Priority Tasks
 
     footer
       p © 2025 ToDo App. All rights reserved.

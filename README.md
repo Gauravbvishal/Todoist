@@ -8,12 +8,18 @@ This project demonstrates CRUD operations (Create, Read, Update, Delete) with a 
 ---
 
 ## 🚀 Features
-- ➕ Add new tasks with **priority** and **deadline**
+- ➕ Add new tasks with priority and deadline
+- 🎨 Tasks are displayed with color-coded backgrounds based on priority:
+- 🔴 High Priority → Red background
+- 🟠 Medium Priority → Orange background
+- 🟢 Low Priority → Green background
+- 📊 Priority statistics (High, Medium, Low counts) shown at the top for quick overview
 - 📃 View all tasks in a clean card-based UI
-- ❌ Delete tasks easily
+- ✏️ Edit and update tasks easily
+- ❌ Delete tasks in one click
 - ⚡ Sequelize ORM for smooth database operations
 - 🎨 Pug template engine for server-side rendering
-- 🏗️ Follows **MVC architecture**
+- 🏗️ Follows MVC architecture
 
 ---
 
@@ -26,8 +32,8 @@ This project demonstrates CRUD operations (Create, Read, Update, Delete) with a 
 
 ---
 ## 🖼️ Screenshots
-<!-- ➕ Add Task Page
-![Add Task Page](./public/assets/createTask.png) -->
+➕ Add Task Page
+![Add Task Page](./public/assets/createTask.png)
 
 ### 📌 Add Task Page
 ![Task List Page](./public/assets/allTask.png) 

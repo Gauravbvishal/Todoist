@@ -11,7 +11,7 @@
         allowNull:false,
       },
       priority: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM("high", "medium", "low"),
         allowNull: false,
       },
     });
