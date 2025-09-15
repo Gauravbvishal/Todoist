@@ -41,4 +41,7 @@ exports.deleteTask=(req,res,next)=>{
   .catch(err => console.log(err));
 }
 
+exports.logout=(req,res,next)=>{
+  res.redirect('/')
+}
  
